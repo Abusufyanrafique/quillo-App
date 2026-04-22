@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:quillo_app/ui/screens/splash_screens/happy_cooking.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: true, 
+      builder: (context) => const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

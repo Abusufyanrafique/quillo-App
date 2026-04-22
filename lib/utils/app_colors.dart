@@ -6,4 +6,6 @@ class AppColors {
   static const Color splashscreensecondtext = Color(0xFF6366F1);
   static const Color thirdtext = Color(0xFF6B7280);
   static const Color getstartedbutton = Color(0xFFFACC15);
+  static const Color accounttext = Color(0xFF9CA3AF);
+  static const Color sigintext = Color(0xFF6366F1);
 }

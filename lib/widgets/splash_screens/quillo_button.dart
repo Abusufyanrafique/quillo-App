@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quillo_app/utils/app_colors.dart';
-import 'package:quillo_app/utils/app_text.dart';
 
-class GetStartedButton extends StatelessWidget {
+class QuilloButton extends StatelessWidget {
   final String imagePath;
   final VoidCallback onTap;
 
-  const GetStartedButton({
+  const QuilloButton({
     super.key,
     required this.imagePath,
     required this.onTap,
@@ -18,33 +17,37 @@ class GetStartedButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 56,
-        width: 294,
+        height: 45.6,
+        width: 119.79,
         decoration: BoxDecoration(
-          color: AppColors.getstartedbutton,
-          borderRadius: BorderRadius.circular(48),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xFF6366F1).withOpacity(0.13),
+              blurRadius: 10,
+              offset: Offset(0, 5),
+            ),
+          ],
         ),
         child: Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
           
-              // Image
               Image.asset(
                 imagePath,
                 height: 24,
                 width: 24,
               ),
           
-              SizedBox(width: 0),
-          
-              // Text
               Text(
-                AppText.getstarted,
+                "QUILLO",
                 style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF1A1A2E),
+                  fontSize: 18.42,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.splashscreensecondtext,
+                  letterSpacing: -0.49
                 ),
               ),
             ],
