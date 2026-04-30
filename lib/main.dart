@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:quillo_app/ui/screens/splash_screens/happy_cooking.dart';
+import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:quillo_app/providers/auth_provider/auth_provider.dart';
+import 'package:quillo_app/ui/screens/authentication_screens/create_account_screen.dart';
+
 
 void main() {
   runApp(
     DevicePreview(
-      enabled: true, 
-      builder: (context) => const MyApp(),
+      enabled: true,
+      builder: (context) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => AuthProvider(),
+          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -18,62 +28,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Quillo App',
+
+      // ✅ DevicePreview support
+      builder: DevicePreview.appBuilder,
+      locale: DevicePreview.locale(context),
+
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const HappyCooking(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-  
-    return Scaffold(
-      appBar: AppBar(
-        
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-       
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
         ),
+        useMaterial3: true,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+
+      home: const CreateAccountScreen(),
     );
   }
 }

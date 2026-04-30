@@ -22,4 +22,12 @@ class AppImages {
  static const String ai = "assets/icons/splash/ai.png";
  static const String meals = "assets/icons/splash/smartmeal.png";
  static const String arrow = "assets/icons/splash/arrow.png";
+ static const String salad = "assets/icons/splash/salad.png";
+ static const String vermicelli = "assets/icons/splash/Vermicelli.png";
+ static const String greenbell = "assets/icons/splash/Greenbell.png";
+ static const String rice = "assets/icons/splash/rice.png";
+ //=======================auth=========================
+ static const String google = "assets/icons/authentication/google.png";
+ static const String apple = "assets/icons/authentication/apple.png";
+ static const String illustrationauth= "assets/images/authentication/Illustration_auth.png";
 }

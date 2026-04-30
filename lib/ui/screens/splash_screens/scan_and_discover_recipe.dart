@@ -13,10 +13,10 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
       body: Stack(
         children: [
 
-          // ── Background dark blob (bottom right) ──────
+          // ── Background  blob (bottom right) ──────
           Positioned(
-            right: -60,
-            top: -100,
+            right: -40,
+            top: -60,
             child: Container(
               width: 280,
               height: 260,
@@ -291,27 +291,27 @@ class GroceryToRecipeIllustration extends StatelessWidget {
 
         // Grocery Receipt
         Positioned(
-          top: 50,
-          left: 30,
+          top: 80,
+          left: 60,
           child: Transform.rotate(
-            angle: -4 * math.pi / 180,
+            angle: -7 * math.pi / 180,
             child: const _GroceryReceiptCard(),
           ),
         ),
 
         // AI Magic circle
         Positioned(
-          top: 80,
-          left: 150,
+          top:109,
+          left: 130,
           child: const _AiMagicCircle(),
         ),
 
         // Green card (back)
         Positioned(
-          top: 30,
-          right: 5,
+          top: 102,
+          right: 50,
           child: Transform.rotate(
-            angle: -3 * math.pi / 180,
+            angle: 9 * math.pi / 180,
             child: Container(
               width: 106,
               height: 66,
@@ -330,77 +330,82 @@ class GroceryToRecipeIllustration extends StatelessWidget {
           ),
         ),
         // Mint card (middle)
-        Positioned(
-          top: 40,
-          right: 8,
-          child: Container(
-            width: 106,
-            height: 66,
-            decoration: BoxDecoration(
-               gradient: LinearGradient(colors: [
-                  Color(0xFFD1FAE5),
-                  Color(0xFFA7F3D0),
-                ]),
-                border: Border.all(
-                  color: Color(0xFF6EE7B7),
-                  width: 1.34,
-                ),
-              borderRadius: BorderRadius.circular(18),
-            ),
-          ),
+       Positioned(
+  top: 115,
+  right: 60,
+  child: Transform.rotate(
+    angle: -4.20 * math.pi / 180, // negative = left side, positive = right side
+    child: Container(
+      width: 106,
+      height: 66,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFFD1FAE5),
+            Color(0xFFA7F3D0),
+          ],
         ),
+        border: Border.all(
+          color: const Color(0xFF6EE7B7),
+          width: 1.34,
+        ),
+        borderRadius: BorderRadius.circular(18),
+      ),
+    ),
+  ),
+),
         // Yellow recipe card (front)
         Positioned(
-          top: 52,
-          right: 6,
+          top: 130,
+          right: 60,
           child: const _RecipeCard(),
         ),
 
         // Floating food
         Positioned(
-          top: 22,
-          right: 100,
-          child: const Text('🥗', style: TextStyle(fontSize: 28)),
+          top: 95,
+          right: 96,
+          child: Image(image: AssetImage(AppImages.salad)),
         ),
         Positioned(
-          top: 38,
-          right: 62,
-          child: const Text('🍜', style: TextStyle(fontSize: 22)),
+          top: 113,
+          right: 106,
+          child: Image(image: AssetImage(AppImages.vermicelli)),
         ),
 
         // Corner items
         Positioned(
-          top: 12,
-          left: 2,
+          top: 50,
+          left: 24,
           child: _FoodCircle(
-              emoji: '🌿',
+             imagepath: AppImages.leaf,
               size: 44,
-              bgColor: const Color(0xFFDCF5E0),
-              borderColor: const Color(0xFFA8E6B0)),
+              bgColor: const Color(0xFFF0FDF4),
+              borderColor: const Color(0xFFBBF7D0)),
         ),
         Positioned(
-          top: 12,
-          right: 2,
+          top: 50,
+          right: 40,
           child: _FoodCircle(
-              emoji: '🫑',
+              imagepath: AppImages.greenbell,
               size: 44,
-              bgColor: const Color(0xFFFFE8E8),
-              borderColor: const Color(0xFFFFBBBB)),
+              bgColor: const Color(0xFFFFF1F2),
+              borderColor: const Color(0xFFFECDD3)),
         ),
         Positioned(
           bottom: 8,
           left: 2,
           child: _FoodSquare(
-              emoji: '🧅',
+             imagepath: AppImages.onion,
               size: 44,
-              bgColor: const Color(0xFFFFF3DC),
-              borderColor: const Color(0xFFFFDFA0)),
+              bgColor: const Color(0xFFFEF9C3),
+              borderColor: const Color(0xFFFDE68A)),
         ),
         Positioned(
-          bottom: 8,
-          right: 2,
+          bottom: 0,
+          right: 20,
           child: _FoodCircle(
-              emoji: '🍋',
+              imagepath: AppImages.lemon,
               size: 44,
               bgColor: const Color(0xFFFFFADC),
               borderColor: const Color(0xFFFFE870)),
@@ -408,20 +413,25 @@ class GroceryToRecipeIllustration extends StatelessWidget {
 
         // Dots
         Positioned(
-            top: 45,
-            left: 120,
+            top: 60,
+            left: 130,
             child: _Dot(size: 7, color: const Color(0xFFFACC15))),
         Positioned(
             top: 160,
-            left: 55,
+            left: 50,
             child: _Dot(
                 size: 7,
-                color: const Color(0xFFFACC15).withOpacity(0.7))),
+                color: const Color(0xFFFACC15))),
         Positioned(
             top: 65,
             right: 175,
             child:
-                _Dot(size: 6, color: const Color(0xFFC4B5FD).withOpacity(0.6))),
+                _Dot(size: 6, color: const Color(0xFF6366F1))),
+                 Positioned(
+            top: 105,
+            right: 80,
+            child:
+                _Dot(size: 6, color: const Color(0xFF6366F1))),
       ],
     );
   }
@@ -661,27 +671,23 @@ class _RecipeCard extends StatelessWidget {
               width: 42,
               height: 42,
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  border: Border.all(
-                      color: const Color(0xFFFFE870), width: 1.5)),
+                      ),
               child: const Center(
-                  child: Text('🍛',
-                      style: TextStyle(fontSize: 22))),
+                  child:Image(image: AssetImage(AppImages.rice))),
             ),
           ),
           Positioned(
-            top: 58,
+            top: 20,
             left: 12,
             right: 12,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    height: 5,
-                    width: 100,
+                    height: 6.53,
+                    width: 55,
                     decoration: BoxDecoration(
-                        color: const Color(0xFFE8D870),
+                        color: const Color(0xFF92400E),
                         borderRadius: BorderRadius.circular(3))),
                 const SizedBox(height: 5),
                 Container(
@@ -695,12 +701,14 @@ class _RecipeCard extends StatelessWidget {
           ),
           Positioned(
             bottom: 12,
-            left: 40,
+            left: 10,
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 5),
+              width: 45,
+              height: 16,
+              // padding: const EdgeInsets.symmetric(
+              //     horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: Color(0xFFFDE68A),
+                color: Color(0xFFfef8de),
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -779,61 +787,74 @@ class _DashedCirclePainter extends CustomPainter {
 }
 
 class _FoodCircle extends StatelessWidget {
-  final String emoji;
+  final String imagepath;
   final double size;
   final Color bgColor;
   final Color? borderColor;
 
-  const _FoodCircle(
-      {required this.emoji,
-      required this.size,
-      required this.bgColor,
-      this.borderColor});
+  const _FoodCircle({
+    required this.imagepath,
+    required this.size,
+    required this.bgColor,
+    this.borderColor,
+  });
 
   @override
   Widget build(BuildContext context) => Container(
         width: size,
         height: size,
         decoration: BoxDecoration(
-            color: bgColor,
-            shape: BoxShape.circle,
-            border: borderColor != null
-                ? Border.all(color: borderColor!, width: 1.5)
-                : null),
+          color: bgColor,
+          shape: BoxShape.circle,
+          border: borderColor != null
+              ? Border.all(color: borderColor!, width: 1.5)
+              : null,
+        ),
         child: Center(
-            child:
-                Text(emoji, style: TextStyle(fontSize: size * 0.42))),
+          child: Image.asset(
+            imagepath,
+            width: size * 0.5,
+            height: size * 0.5,
+            fit: BoxFit.contain,
+          ),
+        ),
       );
 }
 
 class _FoodSquare extends StatelessWidget {
-  final String emoji;
+  final String imagepath;
   final double size;
   final Color bgColor;
   final Color? borderColor;
 
-  const _FoodSquare(
-      {required this.emoji,
-      required this.size,
-      required this.bgColor,
-      this.borderColor});
+  const _FoodSquare({
+    required this.imagepath,
+    required this.size,
+    required this.bgColor,
+    this.borderColor,
+  });
 
   @override
   Widget build(BuildContext context) => Container(
         width: size,
         height: size,
         decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(12),
-            border: borderColor != null
-                ? Border.all(color: borderColor!, width: 1.5)
-                : null),
+          color: bgColor,
+          borderRadius: BorderRadius.circular(12),
+          border: borderColor != null
+              ? Border.all(color: borderColor!, width: 1.5)
+              : null,
+        ),
         child: Center(
-            child:
-                Text(emoji, style: TextStyle(fontSize: size * 0.42))),
+          child: Image.asset(
+            imagepath,
+            width: size * 0.5,
+            height: size * 0.5,
+            fit: BoxFit.contain,
+          ),
+        ),
       );
 }
-
 class _Dot extends StatelessWidget {
   final double size;
   final Color color;
