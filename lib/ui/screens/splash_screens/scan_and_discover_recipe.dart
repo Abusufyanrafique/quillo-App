@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quillo_app/ui/screens/splash_screens/recipe_in_seconds_screen.dart';
 import 'package:quillo_app/utils/app_images.dart';
 
 class ScanAndDiscoverRecipe extends StatelessWidget {
@@ -8,56 +9,62 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ── Screen size lena taake blobs bhi responsive hon ──
+    final size = MediaQuery.of(context).size;
+    final sw = size.width;
+    final sh = size.height;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
       body: Stack(
         children: [
-
-          // ── Background  blob (bottom right) ──────
+          // ── Background blob 1 (top right, bada) ──────────────
           Positioned(
-            right: -40,
-            top: -60,
+            right: -sw * 0.10,
+            top: -sh * 0.07,
             child: Container(
-              width: 280,
-              height: 260,
+              width: sw * 0.72,
+              height: sh * 0.32,
               decoration: BoxDecoration(
                 color: const Color(0xFF6366F1).withOpacity(0.06),
-                borderRadius: BorderRadius.circular(140),
-              ),
-            ),
-          ),
-           Positioned(
-            right: -2,
-            top: 255,
-            child: Container(
-              width: 140,
-              height:140,
-              decoration: BoxDecoration(
-                color: const Color(0xFF6366F1).withOpacity(0.06),
-                borderRadius: BorderRadius.circular(140),
+                borderRadius: BorderRadius.circular(sw * 0.36),
               ),
             ),
           ),
 
-          // ── Main content ──────────────────────────────
+          // ── Background blob 2 (right side, chota) ────────────
+          Positioned(
+            right: -sw * 0.01,
+            top: sh * 0.34,
+            child: Container(
+              width: sw * 0.36,
+              height: sw * 0.36,
+              decoration: BoxDecoration(
+                color: const Color(0xFF6366F1).withOpacity(0.06),
+                borderRadius: BorderRadius.circular(sw * 0.18),
+              ),
+            ),
+          ),
+
+          // ── Main content ──────────────────────────────────────
           SafeArea(
             child: Column(
               children: [
-                const SizedBox(height: 30),
+                SizedBox(height: sh * 0.035),
 
-                // ── Top illustration area ─────────────
+                // ── Top illustration area ─────────────────────
                 Expanded(
                   flex: 3,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10),
-                    child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: sw * 0.04),
+                    child: const SizedBox(
                       width: double.infinity,
-                      child: const GroceryToRecipeIllustration(),
+                      child: GroceryToRecipeIllustration(),
                     ),
                   ),
                 ),
 
-                // ── Bottom content area ───────────────
+                // ── Bottom content area ───────────────────────
                 Expanded(
                   flex: 6,
                   child: Container(
@@ -69,18 +76,20 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 28, vertical: 28),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: sw * 0.072,
+                        vertical: sh * 0.033,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-
                           // Step indicator
                           Container(
                             height: 30,
                             width: 99.4,
                             decoration: BoxDecoration(
-                              color: const Color(0xFF6366F1).withOpacity(0.20),
+                              color:
+                                  const Color(0xFF6366F1).withOpacity(0.20),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Center(
@@ -109,7 +118,7 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 16),
+                          SizedBox(height: sh * 0.019),
 
                           // Title
                           RichText(
@@ -146,7 +155,7 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 12),
+                          SizedBox(height: sh * 0.014),
 
                           // Subtitle
                           Text(
@@ -160,7 +169,7 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: sh * 0.024),
 
                           // Feature chips
                           Row(
@@ -187,7 +196,14 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
                             width: double.infinity,
                             height: 56,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                  builder: (context) => RecipeInSecondsScreen(),
+                                  ),
+                                  );
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF6366F1),
                                 foregroundColor: Colors.white,
@@ -196,28 +212,26 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                               ),
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Next',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white,
-                                      ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Next',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
                                     ),
-                                    const SizedBox(width: 8),
-                                    Image(
-                                        image: AssetImage(AppImages.arrow)),
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Image(
+                                      image: AssetImage(AppImages.arrow)),
+                                ],
                               ),
                             ),
                           ),
 
-                          const SizedBox(height: 8),
+                          SizedBox(height: sh * 0.010),
                         ],
                       ),
                     ),
@@ -232,7 +246,7 @@ class ScanAndDiscoverRecipe extends StatelessWidget {
   }
 }
 
-// ── Feature Chip ────────────────────────────────────────────
+// ── Feature Chip ─────────────────────────────────────────────
 class _FeatureChip extends StatelessWidget {
   final String label;
   final String imagepath;
@@ -252,7 +266,6 @@ class _FeatureChip extends StatelessWidget {
             color: const Color(0xFF000000).withOpacity(0.06),
             offset: const Offset(0, 4),
             blurRadius: 14,
-            spreadRadius: 0,
           ),
         ],
       ),
@@ -285,167 +298,204 @@ class GroceryToRecipeIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final w = constraints.maxWidth;
+        final h = constraints.maxHeight;
 
-        // Grocery Receipt
-        Positioned(
-          top: 80,
-          left: 60,
-          child: Transform.rotate(
-            angle: -7 * math.pi / 180,
-            child: const _GroceryReceiptCard(),
-          ),
-        ),
+        // ── Card sizes bhi responsive ──
+        final cardW = w * 0.30;
+        final cardH = h * 0.30;
+        final circleSize = w * 0.21; // AI circle
+        final foodIconSize = w * 0.125;
 
-        // AI Magic circle
-        Positioned(
-          top:109,
-          left: 130,
-          child: const _AiMagicCircle(),
-        ),
-
-        // Green card (back)
-        Positioned(
-          top: 102,
-          right: 50,
-          child: Transform.rotate(
-            angle: 9 * math.pi / 180,
-            child: Container(
-              width: 106,
-              height: 66,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Color(0xFFEDE9FE),
-                  Color(0xFFDDD6FE),
-                ]),
-                border: Border.all(
-                  color: Color(0xFFDDD6FE),
-                  width: 1.34,
+        return Stack(
+          clipBehavior: Clip.none,
+          children: [
+            // ── Grocery Receipt ───────────────────────────────
+            Positioned(
+              top: h * 0.32,
+              left: w * 0.10,
+              child: Transform.rotate(
+                angle: -7 * math.pi / 180,
+                child: _GroceryReceiptCard(
+                  cardWidth: w * 0.32,
+                  cardHeight: h * 0.55,
                 ),
-                borderRadius: BorderRadius.circular(18),
               ),
             ),
-          ),
-        ),
-        // Mint card (middle)
-       Positioned(
-  top: 115,
-  right: 60,
-  child: Transform.rotate(
-    angle: -4.20 * math.pi / 180, // negative = left side, positive = right side
-    child: Container(
-      width: 106,
-      height: 66,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFFD1FAE5),
-            Color(0xFFA7F3D0),
+
+            // ── AI Magic Circle ───────────────────────────────
+            Positioned(
+              top: h * 0.44,
+              left: w * 0.37,
+              child: _AiMagicCircle(size: circleSize),
+            ),
+
+            // ── Purple card (back) ────────────────────────────
+            Positioned(
+              top: h * 0.43,
+              right: w * 0.14,
+              child: Transform.rotate(
+                angle: 9 * math.pi / 180,
+                child: Container(
+                  width: cardW,
+                  height: cardH,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(colors: [
+                      Color(0xFFEDE9FE),
+                      Color(0xFFDDD6FE),
+                    ]),
+                    border: Border.all(
+                        color: const Color(0xFFDDD6FE), width: 1.34),
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                ),
+              ),
+            ),
+
+            // ── Mint card (middle) ────────────────────────────
+            Positioned(
+              top: h * 0.50,
+              right: w * 0.16,
+              child: Transform.rotate(
+                angle: -4.20 * math.pi / 180,
+                child: Container(
+                  width: 104,
+                  height: cardH,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(colors: [
+                      Color(0xFFD1FAE5),
+                      Color(0xFFA7F3D0),
+                    ]),
+                    border: Border.all(
+                        color: const Color(0xFF6EE7B7), 
+                        width: 1.34
+                        ),
+                    borderRadius: BorderRadius.circular(18
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // ── Yellow Recipe Card (front) ────────────────────
+            Positioned(
+              top: h * 0.56,
+              right: w * 0.15,
+              child: SizedBox(
+                width: 108,
+                height: cardH,
+                child: const _RecipeCard(),
+              ),
+            ),
+
+            // ── Floating food images ──────────────────────────
+            Positioned(
+              top: h * 0.38,
+              right: w * 0.25,
+              child: Image(
+                image: AssetImage(AppImages.salad),
+                width: w * 0.12,
+                height: w * 0.12,
+              ),
+            ),
+            Positioned(
+              top: h * 0.47,
+              right: w * 0.28,
+              child: Image(
+                image: AssetImage(AppImages.vermicelli),
+                width: w * 0.12,
+                height: w * 0.12,
+              ),
+            ),
+
+            // ── Corner food icons ─────────────────────────────
+            Positioned(
+              top: h * 0.18,
+              left: w * 0.0,
+              child: _FoodCircle(
+                imagepath: AppImages.leaf,
+                size: foodIconSize,
+                bgColor: const Color(0xFFF0FDF4),
+                borderColor: const Color(0xFFBBF7D0),
+              ),
+            ),
+            Positioned(
+              top: h * 0.05,
+              right: w * 0.08,
+              child: _FoodCircle(
+                imagepath: AppImages.greenbell,
+                size: foodIconSize,
+                bgColor: const Color(0xFFFFF1F2),
+                borderColor: const Color(0xFFFECDD3),
+              ),
+            ),
+            Positioned(
+              bottom: -30,
+              left: w * 0.0,
+              child: _FoodSquare(
+                imagepath: AppImages.onion,
+                size: foodIconSize,
+                bgColor: const Color(0xFFFEF9C3),
+                borderColor: const Color(0xFFFDE68A),
+              ),
+            ),
+            Positioned(
+              bottom: h * 0.01,
+              right: w * 0.05,
+              child: _FoodCircle(
+                imagepath: AppImages.lemon,
+                size: foodIconSize,
+                bgColor: const Color(0xFFFFFADC),
+                borderColor: const Color(0xFFFFE870),
+              ),
+            ),
+
+            // ── Decorative dots ───────────────────────────────
+            Positioned(
+              top: h * 0.18,
+              left: w * 0.36,
+              child: _Dot(size: 7, color: const Color(0xFFFACC15)),
+            ),
+            Positioned(
+              top: h * 0.68,
+              left: w * 0.14,
+              child: _Dot(size: 7, color: const Color(0xFFFACC15)),
+            ),
+            Positioned(
+              top: h * 0.20,
+              right: w * 0.48,
+              child: _Dot(size: 6, color: const Color(0xFF6366F1)),
+            ),
+            Positioned(
+              top: h * 0.44,
+              right: w * 0.22,
+              child: _Dot(size: 6, color: const Color(0xFF6366F1)),
+            ),
           ],
-        ),
-        border: Border.all(
-          color: const Color(0xFF6EE7B7),
-          width: 1.34,
-        ),
-        borderRadius: BorderRadius.circular(18),
-      ),
-    ),
-  ),
-),
-        // Yellow recipe card (front)
-        Positioned(
-          top: 130,
-          right: 60,
-          child: const _RecipeCard(),
-        ),
-
-        // Floating food
-        Positioned(
-          top: 95,
-          right: 96,
-          child: Image(image: AssetImage(AppImages.salad)),
-        ),
-        Positioned(
-          top: 113,
-          right: 106,
-          child: Image(image: AssetImage(AppImages.vermicelli)),
-        ),
-
-        // Corner items
-        Positioned(
-          top: 50,
-          left: 24,
-          child: _FoodCircle(
-             imagepath: AppImages.leaf,
-              size: 44,
-              bgColor: const Color(0xFFF0FDF4),
-              borderColor: const Color(0xFFBBF7D0)),
-        ),
-        Positioned(
-          top: 50,
-          right: 40,
-          child: _FoodCircle(
-              imagepath: AppImages.greenbell,
-              size: 44,
-              bgColor: const Color(0xFFFFF1F2),
-              borderColor: const Color(0xFFFECDD3)),
-        ),
-        Positioned(
-          bottom: 8,
-          left: 2,
-          child: _FoodSquare(
-             imagepath: AppImages.onion,
-              size: 44,
-              bgColor: const Color(0xFFFEF9C3),
-              borderColor: const Color(0xFFFDE68A)),
-        ),
-        Positioned(
-          bottom: 0,
-          right: 20,
-          child: _FoodCircle(
-              imagepath: AppImages.lemon,
-              size: 44,
-              bgColor: const Color(0xFFFFFADC),
-              borderColor: const Color(0xFFFFE870)),
-        ),
-
-        // Dots
-        Positioned(
-            top: 60,
-            left: 130,
-            child: _Dot(size: 7, color: const Color(0xFFFACC15))),
-        Positioned(
-            top: 160,
-            left: 50,
-            child: _Dot(
-                size: 7,
-                color: const Color(0xFFFACC15))),
-        Positioned(
-            top: 65,
-            right: 175,
-            child:
-                _Dot(size: 6, color: const Color(0xFF6366F1))),
-                 Positioned(
-            top: 105,
-            right: 80,
-            child:
-                _Dot(size: 6, color: const Color(0xFF6366F1))),
-      ],
+        );
+      },
     );
   }
 }
 
-// ── Grocery Receipt Card ─────────────────────────────────────
+// ── Grocery Receipt Card ──────────────────────────────────────
+// Ab cardWidth aur cardHeight bahar se aati hain — responsive hai
 class _GroceryReceiptCard extends StatelessWidget {
-  const _GroceryReceiptCard();
+  final double cardWidth;
+  final double cardHeight;
+
+  const _GroceryReceiptCard({
+    this.cardWidth = 112,
+    this.cardHeight = 141,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 112,
-      height: 141,
+      width: cardWidth,
+      height: cardHeight,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
@@ -462,8 +512,7 @@ class _GroceryReceiptCard extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             decoration: const BoxDecoration(
               color: Color(0xFF5B52E8),
               borderRadius: BorderRadius.only(
@@ -471,70 +520,65 @@ class _GroceryReceiptCard extends StatelessWidget {
                 topRight: Radius.circular(13),
               ),
             ),
-            child: Text(
-              'GROCERY RECEIPT',
-              style: GoogleFonts.poppins(
-                fontSize: 8,
-                fontWeight: FontWeight.w800,
-                color: Colors.white,
-                letterSpacing: 0.3,
+            child: Center(
+              child: Text(
+                'GROCERY RECEIPT',
+                style: GoogleFonts.poppins(
+                  fontSize: 8.04,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
           const SizedBox(height: 8),
           ...List.generate(
-              6,
-              (i) => Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, bottom: 5),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 4,
-                          width: [
-                            65.0,
-                            50.0,
-                            72.0,
-                            45.0,
-                            60.0,
-                            38.0
-                          ][i],
-                          decoration: BoxDecoration(
-                            color: i == 0
-                                ? const Color(0xFF9CA3F5)
-                                : const Color(0xFFDDE0F5),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                        ),
-                        const Spacer(),
-                        Container(
-                          height: 4,
-                          width: 18,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFDDE0F5),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                        ),
-                      ],
+            6,
+            (i) => Padding(
+              padding:
+                  const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+              child: Row(
+                children: [
+                  Container(
+                    height: 4,
+                    width: [65.0, 50.0, 72.0, 45.0, 60.0, 38.0][i],
+                    decoration: BoxDecoration(
+                      color: i == 0
+                          ? const Color(0xFF9CA3F5)
+                          : const Color(0xFFDDE0F5),
+                      borderRadius: BorderRadius.circular(2),
                     ),
-                  )),
+                  ),
+                  const Spacer(),
+                  Container(
+                    height: 4,
+                    width: 13,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFDDE0F5),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           const SizedBox(height: 4),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                  16,
-                  (i) => Container(
-                        width: i % 3 == 0 ? 2.5 : 1.5,
-                        height: 18,
-                        margin:
-                            const EdgeInsets.symmetric(horizontal: 0.4),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFBBBFE8),
-                          borderRadius: BorderRadius.circular(1),
-                        ),
-                      )),
+                16,
+                (i) => Container(
+                  width: i % 3 == 0 ? 2.5 : 1.5,
+                  height: 18,
+                  margin: const EdgeInsets.symmetric(horizontal: 0.4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFBBBFE8),
+                    borderRadius: BorderRadius.circular(1),
+                  ),
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 5),
@@ -551,28 +595,31 @@ class _GroceryReceiptCard extends StatelessWidget {
   }
 }
 
-// ── AI Magic Circle ──────────────────────────────────────────
+// ── AI Magic Circle ───────────────────────────────────────────
 class _AiMagicCircle extends StatelessWidget {
-  const _AiMagicCircle();
+  final double size;
+
+  const _AiMagicCircle({this.size = 75});
 
   @override
   Widget build(BuildContext context) {
+    final innerSize = size * 0.77;
     return SizedBox(
-      width: 75,
-      height: 75,
+      width: size,
+      height: size,
       child: Stack(
         children: [
           CustomPaint(
-            size: const Size(75, 75),
+            size: Size(size, size),
             painter: _DashedCirclePainter(),
           ),
           Center(
             child: Container(
-              width: 58,
-              height: 58,
+              width: innerSize,
+              height: innerSize,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xFF6366F1),
+                color: const Color(0xFF6366F1),
                 boxShadow: [
                   BoxShadow(
                     color: const Color(0xFF5B52E8).withOpacity(0.4),
@@ -584,160 +631,183 @@ class _AiMagicCircle extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('AI✨',
-                      style: GoogleFonts.poppins(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w800,
-                          color: const Color(0xFFFACC15))),
-                  Text('MAGIC',
-                      style: GoogleFonts.poppins(
-                          fontSize: 7,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                          letterSpacing: 1)),
+                  Text(
+                    'AI✨',
+                    style: GoogleFonts.poppins(
+                      fontSize: size * 0.147,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFFFACC15),
+                    ),
+                  ),
+                  Text(
+                    'MAGIC',
+                    style: GoogleFonts.poppins(
+                      fontSize: size * 0.093,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      letterSpacing: 1,
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
           Positioned(
-              left: -5,
-              top: 30,
-              child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                      color: Color(0xFFFACC15),
-                      shape: BoxShape.circle))),
+            left: -size * 0.067,
+            top: size * 0.4,
+            child: Container(
+              width: size * 0.107,
+              height: size * 0.107,
+              decoration: const BoxDecoration(
+                color: Color(0xFFFACC15),
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
           Positioned(
-              right: -5,
-              top: 30,
-              child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                      color: Color(0xFFFACC15),
-                      shape: BoxShape.circle))),
+            right: -size * 0.067,
+            top: size * 0.4,
+            child: Container(
+              width: size * 0.107,
+              height: size * 0.107,
+              decoration: const BoxDecoration(
+                color: Color(0xFFFACC15),
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 }
 
-// ── Recipe Card ──────────────────────────────────────────────
+// ── Recipe Card ───────────────────────────────────────────────
 class _RecipeCard extends StatelessWidget {
   const _RecipeCard();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 106,
-      height: 66,
-      decoration: BoxDecoration(
-        // color: const Color(0xFFFFF3B0),
-        gradient: LinearGradient(colors: [
-          Color(0xFFFEF3C7),
-          Color(0xFFFDE68A)
-        ]),
-        borderRadius: BorderRadius.circular(18),
-       border:Border.all(
-        color: Color(0xFFFDE68A),
-        width: 1.79,
-       ) 
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Positioned(
-            top: 12,
-            left: 12,
-            child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              decoration: BoxDecoration(
-                  color: const Color(0xFF5B52E8),
-                  borderRadius: BorderRadius.circular(16)),
-              child: Text('RECIPE',
-                  style: GoogleFonts.poppins(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final w = constraints.maxWidth;
+        final h = constraints.maxHeight;
+
+        return Container(
+          width: w,
+          height: h,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFFEF3C7), Color(0xFFFDE68A)],
+            ),
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: const Color(0xFFFDE68A), width: 1.79),
+          ),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Positioned(
+                top: h * 0.05,
+                left: w * 0.11,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 8, vertical: 3),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF5B52E8),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    'RECIPE',
+                    style: GoogleFonts.poppins(
                       fontSize: 7,
                       fontWeight: FontWeight.w800,
                       color: Colors.white,
-                      letterSpacing: 0.8)),
-            ),
-          ),
-          Positioned(
-            top: 6,
-            right: 10,
-            child: Container(
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(
-                      ),
-              child: const Center(
-                  child:Image(image: AssetImage(AppImages.rice))),
-            ),
-          ),
-          Positioned(
-            top: 20,
-            left: 12,
-            right: 12,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                    height: 6.53,
-                    width: 55,
-                    decoration: BoxDecoration(
-                        color: const Color(0xFF92400E),
-                        borderRadius: BorderRadius.circular(3))),
-                const SizedBox(height: 5),
-                Container(
-                    height: 5,
-                    width: 75,
-                    decoration: BoxDecoration(
-                        color: const Color(0xFFE8D870),
-                        borderRadius: BorderRadius.circular(3))),
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: 12,
-            left: 10,
-            child: Container(
-              width: 45,
-              height: 16,
-              // padding: const EdgeInsets.symmetric(
-              //     horizontal: 10, vertical: 5),
-              decoration: BoxDecoration(
-                color: Color(0xFFfef8de),
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 6)
-                ],
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text('⏱',
-                      style: TextStyle(fontSize: 10)),
-                  const SizedBox(width: 3),
-                  Text('25 min',
-                      style: GoogleFonts.poppins(
+              Positioned(
+                top: h * 0.02,
+                right: w * 0.44,
+                child: SizedBox(
+                  width: w * 0.40,
+                  height: h * 0.64,
+                  child: const Center(
+                    child: Image(image: AssetImage(AppImages.rice)),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: h * 0.25,
+                left: w * 0.45,
+                right: w * 0.11,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 6.53,
+                     width: w * 0.50,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE8D870),
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Container(
+                      height: 5,
+                      width: w * 0.30,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE8D870),
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: h * 0.18,
+                left: w * 0.25,
+                child: Container(
+                  width: w * 0.49,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFfef8de),
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 6,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('⏱', style: TextStyle(fontSize: 10)),
+                      const SizedBox(width: 3),
+                      Text(
+                        '25 min',
+                        style: GoogleFonts.poppins(
                           fontSize: 7.59,
                           fontWeight: FontWeight.w700,
-                          color: const Color(0xFF92400E))),
-                ],
+                          color: const Color(0xFF92400E),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
 
-// ── Painters & Helpers ───────────────────────────────────────
+// ── Painters & Helpers ────────────────────────────────────────
 class _WavyLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -772,13 +842,13 @@ class _DashedCirclePainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2 - 2;
     for (int i = 0; i < dashCount; i++) {
-      final startAngle = i * dashAngle;
       canvas.drawArc(
-          Rect.fromCircle(center: center, radius: radius),
-          startAngle,
-          dashAngle * 0.5,
-          false,
-          paint);
+        Rect.fromCircle(center: center, radius: radius),
+        i * dashAngle,
+        dashAngle * 0.5,
+        false,
+        paint,
+      );
     }
   }
 
@@ -855,6 +925,7 @@ class _FoodSquare extends StatelessWidget {
         ),
       );
 }
+
 class _Dot extends StatelessWidget {
   final double size;
   final Color color;
@@ -863,8 +934,8 @@ class _Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-      width: size,
-      height: size,
-      decoration:
-          BoxDecoration(color: color, shape: BoxShape.circle));
+        width: size,
+        height: size,
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+      );
 }

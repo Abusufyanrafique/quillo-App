@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
 
 class BackgroundBlobs extends StatelessWidget {
-  const BackgroundBlobs({super.key});
+  final double leftTopSize;
+  final double rightTopSize;
+  final Offset leftTopOffset;
+  final Offset rightTopOffset;
+
+  const BackgroundBlobs({
+    super.key,
+    this.leftTopSize = 240,
+    this.rightTopSize = 200,
+    this.leftTopOffset = const Offset(-95, -88),
+    this.rightTopOffset = const Offset(-65, -70),
+  });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Top-left blob
         Positioned(
-          top: -95,
-          left: -88,
+          top: leftTopOffset.dy,
+          left: leftTopOffset.dx,
           child: _Blob(
-            size: 240,
+            size: leftTopSize,
             color: const Color(0xFF6366F1).withOpacity(0.08),
           ),
         ),
 
-        // Top-right blob
         Positioned(
-          top: -65,
-          right: -70,
+          top: rightTopOffset.dy,
+          right: rightTopOffset.dx,
           child: _Blob(
-            size: 200,
+            size: rightTopSize,
             color: const Color(0xFFFACC15).withOpacity(0.11),
           ),
         ),

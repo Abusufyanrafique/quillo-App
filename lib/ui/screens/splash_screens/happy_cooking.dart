@@ -9,7 +9,7 @@ import 'package:quillo_app/widgets/splash_screens/quillo_button.dart';
 import 'package:quillo_app/widgets/splash_screens/quillo_cooking_Illustration.dart';
 
 class HappyCooking extends StatefulWidget {
-  const HappyCooking({super.key});
+  const HappyCooking({super.key,});
 
   @override
   _HappyCookingState createState() => _HappyCookingState();

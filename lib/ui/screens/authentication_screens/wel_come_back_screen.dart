@@ -29,7 +29,10 @@ class _WelComeBackScreenState extends State<WelComeBackScreen> {
       backgroundColor: const Color(0xFFF5F7FB),
       body: Stack(
         children: [
-          const BackgroundBlobs(),
+          const BackgroundBlobs(
+  leftTopOffset: Offset(-58, -59),
+  rightTopOffset: Offset(-39, -39),
+),
           LayoutBuilder(
             builder: (context, constraints) {
               return SingleChildScrollView(

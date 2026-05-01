@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:quillo_app/providers/auth_provider/auth_provider.dart';
-import 'package:quillo_app/ui/screens/authentication_screens/create_account_screen.dart';
+import 'package:quillo_app/ui/screens/splash_screens/happy_cooking.dart';
 
 
 void main() {
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Quillo App',
 
-      // ✅ DevicePreview support
+      
       builder: DevicePreview.appBuilder,
       locale: DevicePreview.locale(context),
 
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      home: const CreateAccountScreen(),
+      home: const HappyCooking(),
     );
   }
 }

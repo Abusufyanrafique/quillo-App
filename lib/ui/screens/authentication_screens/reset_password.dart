@@ -7,7 +7,6 @@ import 'package:quillo_app/ui/screens/authentication_screens/you_are_all_set_scr
 import 'package:quillo_app/utils/app_images.dart';
 import 'package:quillo_app/widgets/authentication/auth_header.dart';
 import 'package:quillo_app/widgets/authentication/background_blobs.dart';
-import 'package:quillo_app/widgets/authentication/divider_with_text.dart';
 import 'package:quillo_app/widgets/authentication/field_label.dart';
 import 'package:quillo_app/widgets/authentication/primary_button.dart';
 import 'package:quillo_app/widgets/authentication/quillo_text_field.dart';
@@ -29,7 +28,10 @@ class _ResetPasswordState extends State<ResetPassword> {
       backgroundColor: const Color(0xFFF5F7FB),
       body: Stack(
         children: [
-          const BackgroundBlobs(),
+          const BackgroundBlobs(
+  leftTopOffset: Offset(-75, -65),
+  rightTopOffset: Offset(-55, -55),
+),
           LayoutBuilder(
             builder: (context, constraints) {
               return SingleChildScrollView(

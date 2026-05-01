@@ -30,4 +30,5 @@ class AppImages {
  static const String google = "assets/icons/authentication/google.png";
  static const String apple = "assets/icons/authentication/apple.png";
  static const String illustrationauth= "assets/images/authentication/Illustration_auth.png";
+ static const String noodles = "assets/icons/splash/Noodles.png";
 }

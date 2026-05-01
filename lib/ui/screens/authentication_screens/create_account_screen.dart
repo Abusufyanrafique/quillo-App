@@ -23,7 +23,10 @@ class CreateAccountScreen extends StatelessWidget {
       backgroundColor: Color(0xFFF5F7FB),
       body: Stack(
         children: [
-        const BackgroundBlobs(),
+       const BackgroundBlobs(
+  leftTopOffset: Offset(-120, -95),
+  rightTopOffset: Offset(-88, -65),
+),
           // ── Main Content ───────────────────────────────────────────
           SafeArea(
             child: SingleChildScrollView(
@@ -113,10 +116,10 @@ class CreateAccountScreen extends StatelessWidget {
                                   label: 'Create Account',
                                   onPressed: (){
                                     Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => const WelComeBackScreen(),
-  ),
+                                    context,
+                                    MaterialPageRoute(
+                                    builder: (context) => const WelComeBackScreen(),
+                                    ),
 );
                                   },
                                 ),
